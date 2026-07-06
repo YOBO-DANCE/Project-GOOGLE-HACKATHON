@@ -4,51 +4,52 @@ An **AI-powered multi-agent system** that generates personalised sports training
 
 ## **High-Level Architecture**
 
-flowchart TB  
-    subgraph User\["👤 User Layer"\]  
-        UI\["Streamlit Dashboard\<br/\>(app.py)"\]  
+```mermaid
+flowchart TB
+    subgraph User["👤 User Layer"]
+        UI["Streamlit Dashboard<br/>(app.py)"]
     end
 
-    subgraph Agents\["🤖 Agent Layer (Google ADK)"\]  
-        GA\["Guard Agent\<br/\>(agents/guard.py)\<br/\>Security Analysis \+ HITL"\]  
-        CA\["Coach Agent\<br/\>(agents/coach.py)\<br/\>Training Plan Generation"\]  
+    subgraph Agents["🤖 Agent Layer (Google ADK)"]
+        GA["Guard Agent<br/>(agents/guard.py)<br/>Security Analysis + HITL"]
+        CA["Coach Agent<br/>(agents/coach.py)<br/>Training Plan Generation"]
     end
 
-    subgraph Tools\["🔧 Tool Layer (MCP Server)"\]  
-        MCP\["FastMCP Server\<br/\>(tools/server\_mcp.py)"\]  
-        T1\["get\_email\_context\<br/\>📧 Retrieve email metadata"\]  
-        T2\["get\_drive\_files\<br/\>📁 Search cloud drive"\]  
-        T3\["scan\_file\_security\<br/\>🔒 YARA \+ heuristic scan"\]  
+    subgraph Tools["🔧 Tool Layer (MCP Server)"]
+        MCP["FastMCP Server<br/>(tools/server_mcp.py)"]
+        T1["get_email_context<br/>📧 Retrieve email metadata"]
+        T2["get_drive_files<br/>📁 Search cloud drive"]
+        T3["scan_file_security<br/>🔒 YARA + heuristic scan"]
     end
 
-    subgraph Security\["🛡️ Security Layer"\]  
-        SB\["sandbox.py\<br/\>YARA rules\<br/\>Heuristic patterns\<br/\>MIME detection"\]  
+    subgraph Security["🛡️ Security Layer"]
+        SB["sandbox.py<br/>YARA rules<br/>Heuristic patterns<br/>MIME detection"]
     end
 
-    subgraph Inference\["🧠 Inference Layer"\]  
-        OLLAMA\["Ollama\<br/\>(llama3.1 local model)"\]  
+    subgraph Inference["🧠 Inference Layer"]
+        OLLAMA["Ollama<br/>(llama3.1 local model)"]
     end
 
-    UI \--\>|"1. Input\<br/\>(sport, level)"| GA  
-    GA \--\>|"2. Gather context"| MCP  
-    MCP \--\> T1  
-    MCP \--\> T2  
-    MCP \--\> T3  
-    T3 \--\> SB  
-    GA \--\>|"3. Risk assessment"| UI  
-    UI \--\>|"4. HITL approval"| CA  
-    CA \--\>|"5. Generate plan"| OLLAMA  
-    OLLAMA \--\>|"6. Training plan"| UI
+    UI -->|"1. Input<br/>(sport, level)"| GA
+    GA -->|"2. Gather context"| MCP
+    MCP --> T1
+    MCP --> T2
+    MCP --> T3
+    T3 --> SB
+    GA -->|"3. Risk assessment"| UI
+    UI -->|"4. HITL approval"| CA
+    CA -->|"5. Generate plan"| OLLAMA
+    OLLAMA -->|"6. Training plan"| UI
 
-    classDef agent fill:\#4A90D9,color:\#fff,stroke:\#2C5F8A  
-    classDef tool fill:\#7B68EE,color:\#fff,stroke:\#5A4FBF  
-    classDef security fill:\#E74C3C,color:\#fff,stroke:\#C0392B  
-    classDef inference fill:\#27AE60,color:\#fff,stroke:\#1E8449  
-    classDef ui fill:\#F39C12,color:\#fff,stroke:\#D68910  
-    class GA,CA agent  
-    class MCP,T1,T2,T3 tool  
-    class SB security  
-    class OLLAMA inference  
+    classDef agent fill:#4A90D9,color:#fff,stroke:#2C5F8A
+    classDef tool fill:#7B68EE,color:#fff,stroke:#5A4FBF
+    classDef security fill:#E74C3C,color:#fff,stroke:#C0392B
+    classDef inference fill:#27AE60,color:#fff,stroke:#1E8449
+    classDef ui fill:#F39C12,color:#fff,stroke:#D68910
+    class GA,CA agent
+    class MCP,T1,T2,T3 tool
+    class SB security
+    class OLLAMA inference
     class UI ui
 
 ## **Project Structure**
