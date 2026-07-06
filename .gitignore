@@ -1,0 +1,32 @@
+# =============================================================================
+# Sports Concierge Agent — .gitignore (Root project)
+# =============================================================================
+
+# Environment — contains API keys and secrets
+.env
+.env.local
+.env.production
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+PROJECT_SPORTS/
+
+# IDE / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+.DS_Store

@@ -1,0 +1,21 @@
+# =============================================================================
+# .dockerignore — excludes non-essential files from Docker build context
+# =============================================================================
+.git/
+.gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+*.md
+nul
+# Keep README.md accessible (copy explicitly if needed)
+# Exclude the separate ADK scaffold project when building Streamlit image
+sports-concierge/

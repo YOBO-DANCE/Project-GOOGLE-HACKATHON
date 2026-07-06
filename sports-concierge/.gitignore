@@ -1,0 +1,79 @@
+# =============================================================================
+# Sports Concierge Agent (ADK Project) — .gitignore
+# =============================================================================
+# This agent is deployable to Google Cloud Vertex AI. The ignore rules below
+# cover Python build artifacts, ADK/CLI caches, IDE files, and credentials.
+
+# --- Python byte-code ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Packaging / distribution ---
+build/
+dist/
+*.egg-info/
+*.egg
+.installed.cfg
+
+# --- Virtual environments ---
+.venv/
+.venv*/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+Pipfile.lock
+
+# --- Dependencies (uv/pip) ---
+.python-version
+pip-log.txt
+pip-delete-this-directory.txt
+
+# --- Testing ---
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# --- Environment & secrets ---
+.env
+!.env.example
+*.pem
+*-key.json
+credentials*.json
+my_env.tfvars
+
+# --- Terraform ---
+.terraform*
+terraform.tfvars
+
+# --- ADK / Agent CLI ---
+.adk/
+.agents-cli-scripts/
+.google-agents-cli/
+.saved_chats
+.persist_vector_store
+
+# --- IDEs and editors ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+.history/
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
+# --- Temporary files ---
+tmp*
+/tmp
+/out-tsc
+/bazel-out
+
+# --- Load testing (locust) ---
+.locust_env
+tests/load_test/.results/

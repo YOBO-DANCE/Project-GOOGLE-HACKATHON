@@ -1,0 +1,46 @@
+# =============================================================================
+# Sports Concierge Agent — Docker Compose (Hackathon Demo)
+# =============================================================================
+# One-command judging demo:
+#   docker compose up
+#
+# Then open http://localhost:8501
+#
+# The app works in three modes (auto-detected):
+#   🥇 Gemini  (cloud)  — set GEMINI_API_KEY in .env
+#   🥈 Ollama  (local)  — uncomment the ollama service below
+#   🥉 Baseline          — always works, no external dependencies
+# =============================================================================
+
+services:
+  streamlit:
+    build: .
+    container_name: sports-concierge
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    environment:
+      - STREAMLIT_SERVER_MAX_UPLOAD_SIZE=10
+      - OLLAMA_HOST=http://ollama:11434
+    depends_on:
+      ollama:
+        condition: service_started
+    restart: unless-stopped
+
+  # Optional: Local LLM inference via Ollama
+  # To use: docker compose up  (includes both services)
+  # To skip: docker compose up streamlit  (uses Gemini or baseline fallback)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: sports-concierge-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    # The app will handle pulling the model on first use
+    # Or pre-pull: docker compose exec ollama ollama pull llama3.2:3b
+
+volumes:
+  ollama_data:

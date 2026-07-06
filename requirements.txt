@@ -1,0 +1,35 @@
+# =============================================================================
+# Sports Concierge Agent — Dependencies
+# =============================================================================
+# Install:  pip install -r requirements.txt
+# =============================================================================
+
+# --- Frontend Dashboard ---
+streamlit==1.41.1
+
+# --- Agent Framework (Google ADK) ---
+google-adk>=2.0.0
+
+# --- MCP Protocol Server (FastMCP wrapper over the MCP SDK) ---
+fastmcp>=0.1.0
+mcp>=1.0.0
+
+# --- LLM Inference (Training Plan Generation) ---
+# Gemini (cloud, fast) — used when GEMINI_API_KEY or GOOGLE_API_KEY is set
+google-genai>=2.0.0
+# Ollama (local) — used as fallback or standalone
+ollama==0.6.2
+
+# --- Security Scanning ---
+yara-python==4.5.4
+python-magic-bin==0.4.14; platform_system=="Windows"
+python-magic>=0.4.27; platform_system!="Windows"
+
+# --- Data Processing ---
+pandas==2.2.3
+
+# --- Database (Supabase) ---
+supabase==2.10.0
+
+# --- Environment ---
+python-dotenv==1.1.0
