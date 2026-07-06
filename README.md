@@ -4,7 +4,7 @@ An **AI-powered multi-agent system** that generates personalised sports training
 
 ## **High-Level Architecture**
 
-```mermaid
+````mermaid
 flowchart TB
     subgraph User["👤 User Layer"]
         UI["Streamlit Dashboard<br/>(app.py)"]
@@ -51,7 +51,7 @@ flowchart TB
     class SB security
     class OLLAMA inference
     class UI ui
-
+````
 ## **Project Structure**
 
 sports-concierge-agent/  
